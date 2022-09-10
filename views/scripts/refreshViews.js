@@ -86,8 +86,19 @@ const refreshHistory = (obj) => {
   scrollToBottom("history-scroller", 50)
 }
 
+const refreshUsers = () => {
+  var usersList = document.getElementById("users-list")
+  usersList.innerHTML = ""
+  for (const user of Socket.users) {
+    usersList.innerHTML += `
+    <li>${user.pseudo} ${Socket.pseudo === user.pseudo ? "(Vous)" : ""}</li>
+    `
+  }
+}
+
 export default {
   refreshMatchesView,
   refreshChat,
   refreshHistory,
+  refreshUsers,
 }

@@ -4,12 +4,15 @@
   grid-template-rows: 1fr 1fr; 
   gap: 20px; 
   grid-template-areas: 
-    "matches matches matches"
-    "chat history history";
+    "matches matches users"
+    "history history chat";
 }
 
 .card-history {
   grid-area: history;
+}
+.card-users {
+  grid-area: users;
 }
 
 .card {

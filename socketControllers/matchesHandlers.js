@@ -1,5 +1,7 @@
 const matchesModel = require("../models/matches")
 
+const { actions } = require("../constants/sockets")
+
 let matches = []
 
 module.exports = (ws, wss, message) => {
@@ -25,7 +27,7 @@ module.exports = (ws, wss, message) => {
   }
   const getAll = async () => {
     const matches = await matchesModel.getAll()
-    send("get-all", matches.rows)
+    send(actions.getAll, matches.rows)
   }
 
   const addOne = async () => {
@@ -37,34 +39,34 @@ module.exports = (ws, wss, message) => {
       new Date(),
       null,
     ])
-    broadcast("add-one", matches.rows[0])
+    broadcast(actions.addOne, matches.rows[0])
   }
 
   const deleteOne = async () => {
     const matches = await matchesModel.deleteOne(message.data.matchId)
-    broadcast("delete-one", {
+    broadcast(actions.deleteOne, {
       id: matches.rows[0].id,
     })
   }
 
   const finishOne = async () => {
     const matches = await matchesModel.finishOne(message.data.matchId)
-    broadcast("finish-one", {
+    broadcast(actions.finishOne, {
       id: matches.rows[0].id,
     })
   }
 
   switch (message.action) {
-    case "get-all":
+    case actions.getAll:
       getAll()
       break
-    case "add-one":
+    case actions.addOne:
       addOne()
       break
-    case "delete-one":
+    case actions.deleteOne:
       deleteOne()
       break
-    case "finish-one":
+    case actions.finishOne:
       finishOne()
       break
   }

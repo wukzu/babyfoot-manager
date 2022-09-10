@@ -5,19 +5,27 @@ import matchesActions from "./actions/matches.js"
 import modalsActions from "./actions/modals.js"
 import chatActions from "./actions/chat.js"
 
+import constants from "../constants.js"
+
 var btn = document.getElementById("btnChoosePseudo")
 
 btn.onclick = () => {
   modalsActions.choosePseudo(async (pseudo) => {
-    await Socket.connection("ws://localhost:3000/ws?pseudo=" + pseudo)
+    await Socket.connection(
+      `ws://localhost:${constants.port}/ws?pseudo=${pseudo}`
+    )
     Socket.setPseudo(pseudo)
     Socket.send({
-      type: "match",
-      action: "get-all"
+      type: constants.sockets.types.match,
+      action: constants.sockets.actions.getAll
     })
     Socket.send({
-      type: "message",
-      action: "get-all"
+      type: constants.sockets.types.message,
+      action: constants.sockets.actions.getAll
+    })
+    Socket.send({
+      type: constants.sockets.types.socket,
+      action: constants.sockets.actions.getAll
     })
 
     Socket.ws.onmessage = socketControllers
