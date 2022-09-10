@@ -68,22 +68,21 @@ const refreshChat = () => {
 }
 
 const refreshHistory = (obj) => {
-  const avoidActions = ["get-all"]
-  const avoidType = ["message"]
+  const htmlToAdd = utils.getHistoryText(obj)
+  
+  if(htmlToAdd) {
+    var historyList = document.getElementById("history-list")
 
-  var historyList = document.getElementById("history-list")
-
-  if (!avoidActions.includes(obj.actions) || !avoidType.includes(obj.type)) {
     var newHistory = document.createElement("li")
     newHistory.classList.add("item")
-    newHistory.innerHTML = utils.getHistoryText(obj)
-
+    newHistory.innerHTML = htmlToAdd
+  
     historyList.appendChild(newHistory)
     setTimeout(function () {
       newHistory.className = newHistory.className + " show"
     }, 10)
+    scrollToBottom("history-scroller", 50)
   }
-  scrollToBottom("history-scroller", 50)
 }
 
 const refreshUsers = () => {

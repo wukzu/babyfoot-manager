@@ -8,10 +8,8 @@ const parseDate = (dateIso) => {
 
 const getHistoryText = (obj) => {
   const from = obj.from || obj.data.sender || obj.data.pseudo || "Inconnu"
-  console.log("getHistoryTextgetHistoryText :obj :", obj)
 
   const actionsToText = {
-    [constants.sockets.actions.getAll]: "a récupéré",
     [constants.sockets.actions.addOne]: "a ajouté",
     [constants.sockets.actions.finishOne]: "a marqué comme fini",
     [constants.sockets.actions.deleteOne]: "a supprimé",
@@ -23,11 +21,15 @@ const getHistoryText = (obj) => {
     [constants.sockets.types.match]: "un match",
     [constants.sockets.types.message]: "un message"
   }
+
   const actionsToColor = {
     [constants.sockets.actions.clientConnected]: "green",
     [constants.sockets.actions.clientDisconnected]: "red"
   }
 
+  // Avoid an action we do not want to add to history
+  if(!actionsToText[obj.action]) return null
+  
   return `<span style="color: ${actionsToColor[obj.action]};">[${parseDate(
     new Date().toString()
   )}] <b>${from}</b>  ${actionsToText[obj.action]} ${
