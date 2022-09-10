@@ -99,9 +99,15 @@ span.success {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .cards {
-    flex-direction: column;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr  1fr;
+    gap: 10px; 
+    grid-template-areas: 
+      "matches matches"
+      "chat users"
+      "history history";
   }
   .logo img {
     width: 70px;
@@ -109,6 +115,19 @@ span.success {
   }
   .logo h1 {
     font-size: 25px;
+  }
+}
+
+@media (max-width: 400px) {
+  .cards {
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr 1fr  1fr  1fr;
+    gap: 10px; 
+    grid-template-areas: 
+      "users"
+      "matches"
+      "chat"
+      "history";
   }
 }
 
