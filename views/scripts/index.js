@@ -14,18 +14,23 @@ btn.onclick = () => {
     await Socket.connection(
       `ws://localhost:${constants.port}/ws?pseudo=${pseudo}`
     )
-    Socket.setPseudo(pseudo)
+
     Socket.send({
       type: constants.sockets.types.match,
-      action: constants.sockets.actions.getAll
+      action: constants.sockets.actions.getAll,
     })
     Socket.send({
       type: constants.sockets.types.message,
-      action: constants.sockets.actions.getAll
+      action: constants.sockets.actions.getAll,
     })
     Socket.send({
       type: constants.sockets.types.socket,
-      action: constants.sockets.actions.getAll
+      action: constants.sockets.actions.getAll,
+    })
+
+    Socket.send({
+      type: constants.sockets.types.socket,
+      action: constants.sockets.actions.getMyPseudo
     })
 
     Socket.ws.onmessage = socketControllers

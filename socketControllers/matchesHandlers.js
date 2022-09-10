@@ -9,7 +9,7 @@ let matches = []
 module.exports = (ws, wss, message) => {
   const getAll = async () => {
     const matches = await matchesModel.getAll()
-    send(ws, actions.getAll, matches.rows, message)
+    send(ws, actions.getAll, matches.rows, message.type)
   }
 
   const addOne = async () => {
@@ -26,28 +26,16 @@ module.exports = (ws, wss, message) => {
 
   const deleteOne = async () => {
     const matches = await matchesModel.deleteOne(message.data.matchId)
-    broadcast(
-      wss,
-      ws,
-      actions.deleteOne,
-      message.type,
-      {
-        id: matches.rows[0].id
-      }
-    )
+    broadcast(wss, ws, actions.deleteOne, message.type, {
+      id: matches.rows[0].id
+    })
   }
 
   const finishOne = async () => {
     const matches = await matchesModel.finishOne(message.data.matchId)
-    broadcast(
-      wss,
-      ws,
-      actions.finishOne,
-      message.type,
-      {
-        id: matches.rows[0].id
-      }
-    )
+    broadcast(wss, ws, actions.finishOne, message.type, {
+      id: matches.rows[0].id
+    })
   }
 
   switch (message.action) {

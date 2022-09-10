@@ -11,14 +11,15 @@ export default (messageObj) => {
         Socket.setUsers(messageObj.data)
         break
       case constants.sockets.actions.clientConnected:
-        console.log("client connected", messageObj)
         Socket.addUser({
           pseudo: messageObj.data.pseudo,
         })
         break
       case constants.sockets.actions.clientDisconnected:
-        console.log("client disconnected", messageObj)
         Socket.removeUser(messageObj.data.pseudo)
+        break
+      case constants.sockets.actions.setPseudo:
+        Socket.setPseudo(messageObj.data.pseudo)
         break
     }
   }

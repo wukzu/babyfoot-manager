@@ -12,5 +12,7 @@ module.exports = {
     update: "update",
     clientConnected: "client-connected",
     clientDisconnected: "client-disconnected",
+    setPseudo: "set-pseudo",
+    getMyPseudo: "get-my-pseudo"
   }
 }

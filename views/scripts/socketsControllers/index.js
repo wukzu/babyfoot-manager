@@ -9,7 +9,6 @@ import constants from "../../constants.js"
 export default (message) => {
   const obj =
     typeof message.data === "string" ? JSON.parse(message.data) : message.data
-
   switch (obj.type) {
     case constants.sockets.types.match:
       matchesHandlers(obj)

@@ -4,10 +4,9 @@ const { actions } = require("../constants/sockets")
 const { broadcast, send } = require("./senders")
 
 module.exports = (ws, wss, message) => {
-
   const getAll = async () => {
     const messages = await chatModel.getAll()
-    send(ws, actions.getAll, messages.rows, message)
+    send(ws, actions.getAll, messages.rows, message.type)
   }
 
   const addOne = async () => {
