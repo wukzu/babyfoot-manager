@@ -1,13 +1,13 @@
 module.exports = {
-  broadcast: (wss, ws, action, data, message) => {
-    wss.broadcast(
-      JSON.stringify({
-        type: message.type,
+  broadcast: (wss, ws, action, type, data) => {
+    wss.clients.forEach(function each(client) {
+      client.send(JSON.stringify({
+        type,
         action,
         data,
         from: ws.pseudo || 'Inconnu'
-      })
-    )
+      }))
+    })
   },
   send: (ws, action, data, message) => {
     ws.send(

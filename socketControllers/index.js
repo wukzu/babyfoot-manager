@@ -4,33 +4,24 @@ const socketHandlers = require("./socketHandlers")
 
 const { types, actions } = require("../constants/sockets")
 
-const { broadcast, send } = require("./utils")
+const { broadcast, send } = require("./senders")
 
 module.exports = (wss) => {
-  wss.broadcast = function broadcast(data) {
-    wss.clients.forEach(function each(client) {
-      client.send(data)
-    })
-  }
-
   wss.on("connection", async (ws, req) => {
+    console.log("req.urlreq.url :", req.url)
     const params = req.url.split("?")[1].split("=")
 
     let pseudo = "Invité"
     if (params[0] === "pseudo") pseudo = params[1]
-    ws.pseudo = pseudo
 
+    ws.pseudo = pseudo
     console.log(`${new Date()} Peer ${pseudo} connected`)
 
-    wss.broadcast(
-      JSON.stringify({
-        type: types.socket,
-        action: actions.clientConnected,
-        data: {
-          pseudo
-        }
-      })
-    )
+    broadcast(wss, ws, actions.clientConnected, types.socket, {
+      pseudo
+    })
+    
+    
 
     ws.on("message", (msg) => {
       const message = JSON.parse(msg)
@@ -51,15 +42,9 @@ module.exports = (wss) => {
 
     ws.on("close", function (reasonCode, description) {
       console.log(`${new Date()} Peer ${ws.pseudo} disconnected`)
-      wss.broadcast(
-        JSON.stringify({
-          type: types.socket,
-          action: actions.clientDisconnected,
-          data: {
-            pseudo
-          }
-        })
-      )
+      broadcast(wss, ws, actions.clientDisconnected, types.socket, {
+        pseudo
+      })
     })
   })
 }

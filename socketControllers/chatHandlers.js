@@ -1,7 +1,7 @@
 const chatModel = require("../models/chat")
 
 const { actions } = require("../constants/sockets")
-const { broadcast, send } = require("./utils")
+const { broadcast, send } = require("./senders")
 
 module.exports = (ws, wss, message) => {
 
@@ -17,7 +17,7 @@ module.exports = (ws, wss, message) => {
       data.sender,
       new Date(),
     ])
-    broadcast(wss, ws, actions.addOne, messages.rows[0], message)
+    broadcast(wss, ws, actions.addOne, message.type, messages.rows[0])
   }
 
   if (message.action) {

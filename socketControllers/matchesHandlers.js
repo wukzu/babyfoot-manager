@@ -2,7 +2,7 @@ const matchesModel = require("../models/matches")
 
 const { actions } = require("../constants/sockets")
 
-const { broadcast, send } = require("./utils")
+const { broadcast, send } = require("./senders")
 
 let matches = []
 
@@ -21,7 +21,7 @@ module.exports = (ws, wss, message) => {
       new Date(),
       null
     ])
-    broadcast(wss, ws, actions.addOne, matches.rows[0], message)
+    broadcast(wss, ws, actions.addOne, message.type, matches.rows[0])
   }
 
   const deleteOne = async () => {
@@ -30,10 +30,10 @@ module.exports = (ws, wss, message) => {
       wss,
       ws,
       actions.deleteOne,
+      message.type,
       {
         id: matches.rows[0].id
-      },
-      message
+      }
     )
   }
 
@@ -43,10 +43,10 @@ module.exports = (ws, wss, message) => {
       wss,
       ws,
       actions.finishOne,
+      message.type,
       {
         id: matches.rows[0].id
-      },
-      message
+      }
     )
   }
 

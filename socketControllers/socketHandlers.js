@@ -1,6 +1,6 @@
 const { actions } = require("../constants/sockets")
 
-const { send } = require("./utils")
+const { send } = require("./senders")
 
 module.exports = (ws, wss, message) => {
 
