@@ -2,32 +2,14 @@ const matchesModel = require("../models/matches")
 
 const { actions } = require("../constants/sockets")
 
+const { broadcast, send } = require("./utils")
+
 let matches = []
 
 module.exports = (ws, wss, message) => {
-  const broadcast = (action, data) => {
-    wss.broadcast(
-      JSON.stringify({
-        type: message.type,
-        action,
-        data,
-        from: ws.pseudo || "unknown",
-      })
-    )
-  }
-
-  const send = (action, data) => {
-    ws.send(
-      JSON.stringify({
-        type: message.type,
-        action,
-        data,
-      })
-    )
-  }
   const getAll = async () => {
     const matches = await matchesModel.getAll()
-    send(actions.getAll, matches.rows)
+    send(ws, actions.getAll, matches.rows, message)
   }
 
   const addOne = async () => {
@@ -37,23 +19,35 @@ module.exports = (ws, wss, message) => {
       data.score,
       data.finished,
       new Date(),
-      null,
+      null
     ])
-    broadcast(actions.addOne, matches.rows[0])
+    broadcast(wss, ws, actions.addOne, matches.rows[0], message)
   }
 
   const deleteOne = async () => {
     const matches = await matchesModel.deleteOne(message.data.matchId)
-    broadcast(actions.deleteOne, {
-      id: matches.rows[0].id,
-    })
+    broadcast(
+      wss,
+      ws,
+      actions.deleteOne,
+      {
+        id: matches.rows[0].id
+      },
+      message
+    )
   }
 
   const finishOne = async () => {
     const matches = await matchesModel.finishOne(message.data.matchId)
-    broadcast(actions.finishOne, {
-      id: matches.rows[0].id,
-    })
+    broadcast(
+      wss,
+      ws,
+      actions.finishOne,
+      {
+        id: matches.rows[0].id
+      },
+      message
+    )
   }
 
   switch (message.action) {

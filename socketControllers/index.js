@@ -4,6 +4,8 @@ const socketHandlers = require("./socketHandlers")
 
 const { types, actions } = require("../constants/sockets")
 
+const { broadcast, send } = require("./utils")
+
 module.exports = (wss) => {
   wss.broadcast = function broadcast(data) {
     wss.clients.forEach(function each(client) {

@@ -8,6 +8,7 @@ const parseDate = (dateIso) => {
 
 const getHistoryText = (obj) => {
   const from = obj.from || obj.data.sender || obj.data.pseudo || "Inconnu"
+  console.log("getHistoryTextgetHistoryText :obj :", obj)
 
   const actionsToText = {
     [constants.sockets.actions.getAll]: "a récupéré",

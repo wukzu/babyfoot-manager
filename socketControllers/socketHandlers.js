@@ -1,24 +1,17 @@
 const { actions } = require("../constants/sockets")
 
+const { send } = require("./utils")
+
 module.exports = (ws, wss, message) => {
-  const send = (action, data) => {
-    ws.send(
-      JSON.stringify({
-        type: message.type,
-        action,
-        data,
-      })
-    )
-  }
 
   const getAll = () => {
     const data = []
     wss.clients.forEach(function each(client) {
       data.push({
-        pseudo: client.pseudo,
+        pseudo: client.pseudo
       })
     })
-    send(actions.getAll, data)
+    send(ws, actions.getAll, data, message)
   }
   switch (message.action) {
     case actions.getAll:

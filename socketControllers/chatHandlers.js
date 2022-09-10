@@ -1,31 +1,13 @@
 const chatModel = require("../models/chat")
 
 const { actions } = require("../constants/sockets")
+const { broadcast, send } = require("./utils")
 
 module.exports = (ws, wss, message) => {
-  const broadcast = (action, data) => {
-    wss.broadcast(
-      JSON.stringify({
-        type: message.type,
-        action,
-        data
-      })
-    )
-  }
-
-  const send = (action, data) => {
-    ws.send(
-      JSON.stringify({
-        type: message.type,
-        action,
-        data
-      })
-    )
-  }
 
   const getAll = async () => {
     const messages = await chatModel.getAll()
-    send(actions.getAll, messages.rows)
+    send(ws, actions.getAll, messages.rows, message)
   }
 
   const addOne = async () => {
@@ -35,7 +17,7 @@ module.exports = (ws, wss, message) => {
       data.sender,
       new Date(),
     ])
-    broadcast(actions.addOne, messages.rows[0])
+    broadcast(wss, ws, actions.addOne, messages.rows[0], message)
   }
 
   if (message.action) {
