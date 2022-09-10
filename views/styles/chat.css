@@ -1,0 +1,49 @@
+
+
+
+.card-chat .content {
+  --rad: 20px;
+  --rad-sm: 3px;
+  font: 16px/1.5 sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.msg {
+  position: relative;
+  max-width: 75%;
+  padding: 7px 15px;
+  margin-bottom: 2px;
+  overflow-wrap: break-word;
+}
+
+.msg.sent {
+  border-radius: var(--rad) var(--rad-sm) var(--rad-sm) var(--rad);
+  background: #42a5f5;
+  color: #fff;
+  /* moves it to the right */
+  margin-left: auto;
+}
+
+.msg.received {
+  border-radius: var(--rad-sm) var(--rad) var(--rad) var(--rad-sm);
+  background: #f1f1f1;
+  color: #555;
+  /* moves it to the left */
+  margin-right: auto;
+}
+
+.msg .info {
+  font-size: 0.8rem;
+  display: block;
+  white-space: nowrap;
+}
+
+.msg.sent .info {
+  color: white;
+}
+
+.msg.received .info {
+  color: #888;
+}

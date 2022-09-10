@@ -1,0 +1,51 @@
+.cards {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr; 
+  gap: 20px; 
+  grid-template-areas: 
+    "matches matches matches"
+    "chat history history";
+}
+
+.card-history {
+  grid-area: history;
+}
+
+.card {
+  border: 1px solid var(--primary-color);
+  display: grid;
+  grid-template-rows: 50px 200px 1fr;
+  border-radius: 10px;
+}
+
+.card header {
+  display: flex;
+  align-items: center;
+  border-radius: 10px 10px 0 0 ;
+  background-color: var(--primary-color);
+  padding:10px;
+  color: white;
+  font-weight: 500;
+}
+
+.card footer {
+  border-radius:  0 0 10px 10px;
+  padding:5px;
+  background-color: whitesmoke;
+  border-top: 1px solid rgb(177, 177, 177);
+  display: flex;
+  align-items: center;
+}
+
+.card.card-chat {
+  grid-area: chat;
+}
+.cards .card-matches {
+  grid-area: matches;
+}
+
+.card .content {
+  overflow: auto;
+}
+

@@ -1,0 +1,137 @@
+@import url("/styles/components/button.css");
+@import url("/styles/components/modal.css");
+@import url("/styles/components/card.css");
+
+@import url("/styles/chat.css");
+
+@import url("/styles/animations.css");
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  --primary-color: #cc666d;
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+  background-color: whitesmoke;
+  padding: 1rem;
+}
+
+.logo img {
+  width: 100px;
+  height: 100px;
+}
+.logo h1 {
+  margin-left: 25px;
+}
+
+main {
+  padding: 0.75rem;
+  max-width: 65%;
+  margin: auto;
+}
+
+.chip {
+  border: 1px solid rgb(89, 118, 161);
+  background-color: rgb(89, 118, 161);
+  padding: 7px 10px;
+  border-radius: 15px;
+  color: white;
+}
+
+input[type=text], select {
+  font-weight: 500;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 17px;
+}
+
+span.success {
+  color: green;
+  font-weight: 600;
+}
+
+
+#matches .match {
+  padding: 0 15px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-matches footer {
+  display:flex;
+  justify-content: space-between;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.form > div {
+  width: 100%;
+  display: flex;
+  margin: 6px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+@media (max-width: 1300px) {
+  main {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .cards {
+    flex-direction: column;
+  }
+  .logo img {
+    width: 70px;
+    height: 70px;
+  }
+  .logo h1 {
+    font-size: 25px;
+  }
+}
+
+
+.history .list .item {
+  height: 0;
+  line-height: 2em;
+  margin: 0;
+  padding: 0 0.5em;
+  overflow: hidden;
+  width: 20em;
+}
+
+.history .list .item.show {
+  height: 2em;
+  margin: 2px 0;
+}
+
+.slide-fade li {
+  transition: all 0.4s ease-out;
+  opacity: 0;
+}
+
+.slide-fade li.show {
+  opacity: 1;
+}

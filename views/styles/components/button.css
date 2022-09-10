@@ -1,0 +1,42 @@
+button {
+  font-weight: 500;
+  border: none;
+  padding: 1em 1.25em;
+  font-size: 15px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s;
+  border-radius: 10px;
+  opacity: 0.9
+}
+
+button:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+button.grey {
+  border: 1px solid rgb(219, 219, 219);
+}
+
+button.primary {
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: white;
+}
+
+button.dense {
+  height: 40px;
+  padding: 0.5em 1.25em;
+  
+}
+
+button.primary.outlined {
+  background-color: white;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+button.primary:hover {
+  /*background-color: #bc5e64;*/
+}

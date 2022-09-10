@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Babyfoot Manager</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <script src="/scripts/index.js" type="module"></script>
+  </head>
+  <body>
+    <header class="logo header">
+      <img src="/assets/babyfoot-logo.svg" alt="babyfoot logo" />
+      <h1>Babyfoot Manager</h1>
+    </header>
+    <main>
+      <div id="modal-pseudo" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <span onclick="hidePseudoModal()" class="close">&times;</span>
+            <h2>Choisissez un pseudo</h2>
+          </div>
+          <div class="modal-body">
+            <span id="modal-error" class="error-text"></span>
+            <div class="form">
+              <div>
+                <label for="firstPlayer" style="margin-right: 10px"
+                  >Pseudo</label
+                >
+                <input type="text" name="" id="pseudoInput" />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="primary outlined" id="btnChoosePseudo">
+              Valider
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="modal-add" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <span onclick="hideAddModal()" class="close">&times;</span>
+            <h2>Ajouter un match</h2>
+          </div>
+          <div class="modal-body">
+            <span id="modal-error" class="error-text"></span>
+            <div class="form">
+              <div>
+                <label for="firstPlayer">Premier joueur</label>
+                <input type="text" name="" id="firstPlayer" />
+              </div>
+              <div>
+                <label for="secondPlayer">Second joueur</label>
+                <input type="text" name="" id="secondPlayer" />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="primary outlined" onclick="addOneMatch()">
+              Ajouter le match
+            </button>
+          </div>
+        </div>
+      </div>
+      <section>
+        <div class="cards">
+          <div class="card card-matches">
+            <header>
+              <span>Matchs en cours</span>
+            </header>
+            <div id="matches-scroller" class="content">
+              <div id="matches"></div>
+            </div>
+            <footer>
+              <div class="filters">
+                <div>
+                  <label for="finished-matches">Matchs finis</label>
+                  <input
+                    type="checkbox"
+                    id="finished-matches"
+                    onclick="filterFinishedMatches()"
+                  />
+                </div>
+              </div>
+              <div class="actions">
+                <button onclick="showAddModal()" id="modal-add-button">
+                  Ajouter un match
+                </button>
+              </div>
+            </footer>
+          </div>
+          <div class="card card-chat">
+            <header>
+              <span>Chat</span>
+            </header>
+
+            <div id="chat-scroller" class="content">
+              <div id="chat-content"></div>
+            </div>
+            <footer>
+              <input type="text" id="chat-input" />
+              <button class="primary dense" onclick="sendMessage()">
+                Envoyer
+              </button>
+            </footer>
+          </div>
+          <div class="card card-history">
+            <header>
+              <span>Historique</span>
+            </header>
+            <div id="history-scroller" class="content history">
+              <ul id="history-list" class="list slide-fade"></ul>
+            </div>
+            <footer>Au revoir</footer>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
