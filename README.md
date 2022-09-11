@@ -28,7 +28,7 @@ $ cd babyfoot-manager
 $ npm install
 ```
 ## Initialisation de la base de données postgreSQL
-Il y a deux manières d'installer la base de données, en ligne de commande ou de manière graphique avec pgadmin.
+Il y a deux manières d'importer la base de données, en ligne de commande ou de manière graphique avec pgadmin.
 
 ### En ligne de commande
 Il faut créer une base de données vide, créer un utilisateur puis lui accorder tous les droits sur cette base de données.  
