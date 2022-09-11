@@ -3,7 +3,7 @@ import chatHandlers from "./chatHandlers.js"
 import socketHandlers from "./socketHandlers.js"
 import errorHandlers from "./errorHandlers.js"
 import refreshViews from "../refreshViews.js"
-import History from "../classes/history.js"
+import History from "../classes/History.js"
 
 import constants from "../../constants.js"
 

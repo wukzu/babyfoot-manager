@@ -27,7 +27,6 @@ btn.onclick = () => {
       type: constants.sockets.types.socket,
       action: constants.sockets.actions.getAll,
     })
-
     Socket.send({
       type: constants.sockets.types.socket,
       action: constants.sockets.actions.getMyPseudo

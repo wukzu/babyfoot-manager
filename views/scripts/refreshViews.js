@@ -4,16 +4,25 @@ import Socket from "./classes/Socket.js"
 
 import utils from "./utils.js"
 
+/**
+ * Method to scroll to the bottom of an html scrollable element.
+ * @param {Object} element - the html element to scroll.
+ * @param {Number} timeout - The timeout (default 10).
+ */
 const scrollToBottom = (elementId, timeout = 10) => {
   setTimeout(() => {
     let elementScroller = document.getElementById(elementId)
     elementScroller.scroll({
       top: elementScroller.scrollHeight,
-      behavior: "smooth"
+      behavior: "smooth",
     })
   }, timeout)
 }
 
+/**
+ * Method to refresh the matches views.
+ * @param {Array<Object>} filter - a filter applied.
+ */
 const refreshMatchesView = (filter = null) => {
   let matchesDiv = document.querySelector("#matches")
   matchesDiv.innerHTML = ""
@@ -48,6 +57,9 @@ const refreshMatchesView = (filter = null) => {
   scrollToBottom("matches-scroller")
 }
 
+/**
+ * Method to refresh the chat view.
+ */
 const refreshChat = () => {
   let chatContent = document.getElementById("chat-content")
   chatContent.innerHTML = ""
@@ -67,16 +79,20 @@ const refreshChat = () => {
   scrollToBottom("chat-scroller")
 }
 
+/**
+ * Method to refresh the history view.
+ * @param {Object} obj - The history object to format.
+ */
 const refreshHistory = (obj) => {
   const htmlToAdd = utils.getHistoryText(obj)
-  
-  if(htmlToAdd) {
+
+  if (htmlToAdd) {
     var historyList = document.getElementById("history-list")
 
     var newHistory = document.createElement("li")
     newHistory.classList.add("item")
     newHistory.innerHTML = htmlToAdd
-  
+
     historyList.appendChild(newHistory)
     setTimeout(function () {
       newHistory.className = newHistory.className + " show"
@@ -85,6 +101,9 @@ const refreshHistory = (obj) => {
   }
 }
 
+/**
+ * Method to refresh the users.
+ */
 const refreshUsers = () => {
   var usersList = document.getElementById("users-list")
   usersList.innerHTML = ""

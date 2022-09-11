@@ -1,6 +1,9 @@
 import Socket from "../classes/Socket.js"
 import constants from "../../constants.js"
 
+/**
+ * Method to send one message.
+ */
 const sendMessage = () => {
   const chatInput = document.getElementById("chat-input")
 

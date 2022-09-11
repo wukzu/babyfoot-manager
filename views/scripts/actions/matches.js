@@ -6,6 +6,9 @@ import modalActions from "./modals.js"
 
 import constants from "../../constants.js"
 
+/**
+ * Method to add one match.
+ */
 const addOneMatch = () => {
   const firstPlayer = document.getElementById("firstPlayer")
   const secondPlayer = document.getElementById("secondPlayer")
@@ -32,6 +35,10 @@ const addOneMatch = () => {
   modalActions.hideAddModal()
 }
 
+/**
+ * Method to delete one match.
+ * @param {Object} element - the match div.
+ */
 const deleteOneMatch = (element) => {
   let matchId = element.getAttribute("matchId")
   const messageBody = {
@@ -44,6 +51,10 @@ const deleteOneMatch = (element) => {
   Socket.send(messageBody)
 }
 
+/**
+ * Method to finish one match.
+ * @param {Object} element - the match div.
+ */
 const finishOneMatch = (element) => {
   let matchId = element.getAttribute("matchId")
   const messageBody = {
@@ -56,6 +67,9 @@ const finishOneMatch = (element) => {
   Socket.send(messageBody)
 }
 
+/**
+ * Method to filter the matches.
+ */
 const filterFinishedMatches = () => {
   const finishedCheckbox = document.getElementById("finished-matches")
   if (finishedCheckbox.checked) {
