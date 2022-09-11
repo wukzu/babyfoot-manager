@@ -16,7 +16,6 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-
 .logo {
   display: flex;
   align-items: center;
@@ -92,7 +91,6 @@ span.success {
   align-items: center;
 }
 
-
 @media (max-width: 1300px) {
   main {
     max-width: 100%;
@@ -101,13 +99,14 @@ span.success {
 
 @media (max-width: 800px) {
   .cards {
-    grid-template-columns: 1fr 1fr; 
-    grid-template-rows: 1fr 1fr  1fr;
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr 1fr  1fr  1fr;
     gap: 10px; 
     grid-template-areas: 
-      "matches matches"
-      "chat users"
-      "history history";
+      "users"
+      "matches"
+      "chat"
+      "history";
   }
   .logo img {
     width: 70px;
@@ -152,4 +151,26 @@ span.success {
 
 .history .list.slide-fade li.show {
   opacity: 1;
+}
+
+.alert {
+  padding: 20px;
+  margin-bottom:10px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
 }

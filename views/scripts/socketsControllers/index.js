@@ -1,6 +1,7 @@
 import matchesHandlers from "./matchesHandlers.js"
 import chatHandlers from "./chatHandlers.js"
 import socketHandlers from "./socketHandlers.js"
+import errorHandlers from "./errorHandlers.js"
 import refreshViews from "../refreshViews.js"
 import History from "../classes/history.js"
 
@@ -18,6 +19,9 @@ export default (message) => {
       break
     case constants.sockets.types.socket:
       socketHandlers(obj)
+      break
+    case constants.sockets.types.error:
+      errorHandlers(obj)
       break
   }
   History.add(obj)

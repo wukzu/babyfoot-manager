@@ -3,6 +3,7 @@ module.exports = {
     match: "match",
     message: "message",
     socket: "socket",
+    error: "error"
   },
   actions: {
     getAll: "get-all",

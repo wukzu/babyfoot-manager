@@ -1,12 +1,11 @@
 const matchesModel = require("../models/matches")
 
-const { actions } = require("../constants/sockets")
+const { actions, types } = require("../constants/sockets")
+const errors = require("../constants/errors")
 
 const { broadcast, send } = require("./senders")
 
-let matches = []
-
-module.exports = (ws, wss, message) => {
+module.exports = async (ws, wss, message) => {
   const getAll = async () => {
     const matches = await matchesModel.getAll()
     send(ws, actions.getAll, matches.rows, message.type)
@@ -38,18 +37,22 @@ module.exports = (ws, wss, message) => {
     })
   }
 
-  switch (message.action) {
-    case actions.getAll:
-      getAll()
-      break
-    case actions.addOne:
-      addOne()
-      break
-    case actions.deleteOne:
-      deleteOne()
-      break
-    case actions.finishOne:
-      finishOne()
-      break
+  try {
+    switch (message.action) {
+      case actions.getAll:
+        await getAll()
+        break
+      case actions.addOne:
+        await addOne()
+        break
+      case actions.deleteOne:
+        await deleteOne()
+        break
+      case actions.finishOne:
+        await finishOne()
+        break
+    }
+  } catch (err) {
+    send(ws, "", { message: errors[message.type][message.action] }, types.error)
   }
 }

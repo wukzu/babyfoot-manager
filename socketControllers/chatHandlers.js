@@ -1,9 +1,10 @@
 const chatModel = require("../models/chat")
 
-const { actions } = require("../constants/sockets")
+const { actions, types } = require("../constants/sockets")
+const errors = require("../constants/errors")
 const { broadcast, send } = require("./senders")
 
-module.exports = (ws, wss, message) => {
+module.exports = async (ws, wss, message) => {
   const getAll = async () => {
     const messages = await chatModel.getAll()
     send(ws, actions.getAll, messages.rows, message.type)
@@ -20,13 +21,28 @@ module.exports = (ws, wss, message) => {
   }
 
   if (message.action) {
-    switch (message.action) {
-      case actions.getAll:
-        getAll()
-        break
-      case actions.addOne:
-        addOne()
-        break
+    try {
+      switch (message.action) {
+        case actions.getAll:
+          await getAll()
+          break
+        case actions.addOne:
+          await addOne()
+          break
+      }
+    } catch (err) {
+      console.log(
+        "message.action] message.type",
+        message.action,
+        message.type,
+        errors[message.type][message.action]
+      )
+      send(
+        ws,
+        "",
+        { message: errors[message.type][message.action] },
+        types.error
+      )
     }
   }
 }
