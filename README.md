@@ -41,7 +41,7 @@ postgres=# CREATE USER nomUtilisateur with encrypted password 'motDePasse';  # c
 postgres=# grant all privileges on database nomBaseDeDonnees to nomUtilisateur; # le nom de la base de données, et l'utilisateur
 ```
 
-Importez la base de donnée '**babyfootmanager_plain.sql**' se trouvant dans le dossier racine du repo git.
+Importez la base de données '**babyfootmanager_plain.sql**' se trouvant dans le dossier `database files` du repo git.
 Si vous avez utilisé un autre utilisateur que 'babyfootuser' juste avant, remplacez toutes les occurences de 'babyfootuser' dans le fichier sql (ligne 34, 55, 70, 85) par le nom d'utilisateur que vous avez choisi.
 ```bash
 $ cd /chemin/vers/le/repo/
@@ -52,7 +52,7 @@ $ psql -U postgres nomBaseDeDonnees < babyfootmanager_plain.sql # Rempalcez nomB
 1. Créer un nouvel utilisateur '**babyfootuser**'
 2. Créer une nouvelle base de donnéee vide, en mettant comme Owner le nouvel utilisateur '**babyfootuser**'
 3. Clique droit sur cette base de donnée > restore
-4. Pour la partie filename, choisissez le fichier '**babyfootmanager_restore.sql**'
+4. Pour la partie filename, choisissez le fichier '**babyfootmanager_restore.sql**' se trouvant dans le dossier `database files` du repo git.
 5. Cliquez sur 'Restore'
 
 ## Lancement du projet
