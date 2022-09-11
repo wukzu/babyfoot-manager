@@ -1,11 +1,20 @@
 const pool = require("../config/database")
 
+/**
+ * The model to get all the matches from the database.
+ * @return {Object} The result object.
+ */
 exports.getAll = async () => {
   return await pool.query(`
     SELECT * FROM matches
   `)
 }
 
+/**
+ * The model to add one match in the database.
+ * @param {Array} values - The values to add.
+ * @return {Object} The result object.
+ */
 exports.addOne = async (values) => {
   return await pool.query(
     `
@@ -18,6 +27,11 @@ exports.addOne = async (values) => {
   )
 }
 
+/**
+ * The model to finish one match in the database.
+ * @param {Number} id - The match id to modify.
+ * @return {Object} The result object.
+ */
 exports.finishOne = async (id) => {
   return await pool.query(
     `
@@ -30,6 +44,11 @@ exports.finishOne = async (id) => {
   )
 }
 
+/**
+ * The model to delete one match in the database.
+ * @param {Number} id - The match id to delete.
+ * @return {Object} The result object.
+ */
 exports.deleteOne = async (id) => {
   return await pool.query(
     `

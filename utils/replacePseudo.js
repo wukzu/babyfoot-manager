@@ -1,3 +1,9 @@
+/**
+ * Methods to modify a pseudo if it already exists.
+ * @param {String} pseudo - The pseudo to replace in case of.
+ * @param {Array} clients - The clients connected.
+ * @return {String} The new pseudo
+ */
 module.exports = (pseudo, clients) => {
   const existingPseudo = [...clients].find((client) => client.pseudo == pseudo)
   if (existingPseudo) {
