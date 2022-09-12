@@ -56,7 +56,7 @@ $ psql -U postgres nomBaseDeDonnees < babyfootmanager_plain.sql # Rempalcez nomB
 5. Cliquez sur 'Restore'
 
 ## Lancement du projet
-Dans le repo, au même niveau que le fichier `server.js`, créez un nouveau fichier `.env` pour y mettre les variables d'environnement suivantes (qui sont utilisées dans le fichier `server.js` et `config/database.js` :
+Dans le repo, au même niveau que le fichier `server.js`, créez un nouveau fichier `.env` pour y mettre les variables d'environnement suivantes (qui sont utilisées dans le fichier `server.js` et `config/database.js`) :
 ```bash
 PORT=3000                 # Le port d'écoute, par default 3000
 DB_USER=babyfootuser      # L'utilisateur créé précédemment
